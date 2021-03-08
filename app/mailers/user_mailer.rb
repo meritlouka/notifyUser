@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
-  def ticket_email
-    @user = User.first
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  def ticket_email user
+    @user = user
+    mail(to: @user.email, subject: 'Ticket Due Date Notfication')
   end
 end
