@@ -1,7 +1,7 @@
-class EmailJob
+class EmailJob < ApplicationJob
   @queue = :email
 
-  def self.perform(user)
+  def perform(user)
     UserMailer.with(user: user).welcome_email.deliver_now
   end
 end
