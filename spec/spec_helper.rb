@@ -23,6 +23,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 RSpec.configure do |config|
   #config.use_transactional_tests = false
+  config.use_transactional_fixtures = true
 
 
   # rspec-expectations config goes here. You can use an alternate

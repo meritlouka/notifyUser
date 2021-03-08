@@ -3,11 +3,13 @@ RSpec.describe 'Notification:NotifyUser', type: :model do
 
   describe '#call' do
     include ActiveJob::TestHelper
-    let!(:user_1) { create(:user) }
+    let!(:user_1) { create(:user , send_due_date_reminder: true , due_date_reminder_time: Time.now.strftime('%H:%M')) }
     let!(:ticket_1) { create(:ticket,  user: user_1) }
 
-    before do
+    let!(:user_2) { create(:user , send_due_date_reminder: true,due_date_reminder_interval: 1 , due_date_reminder_time: Time.now.strftime('%H:%M')) }
+    let!(:ticket_2) { create(:ticket,due_date: Date.tomorrow,  user: user_2) }
 
+    before do
       ActiveJob::Base.queue_adapter = :test
       clear_enqueued_jobs
     end
@@ -16,9 +18,11 @@ RSpec.describe 'Notification:NotifyUser', type: :model do
       clear_enqueued_jobs
     end
 
-    it 'enque emails' do
-       Notification::NotifyUser.new().call
-       expect(enqueued_jobs.size).to eq(1)
+    it 'enque one emails' do
+      Notification::NotifyUser.new().call
+      expect(enqueued_jobs.size).to eq(2)
     end
+
+
   end
 end

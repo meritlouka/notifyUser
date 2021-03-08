@@ -1,24 +1,17 @@
-# README
+create crontab for this rake task to run every minute to  check all users:
+* * * * * rake SendNotifcation:DueDate
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+to run tests:
+rake rspec spec/*
 
-Things you may want to cover:
+structure:
+service implmented through factory design pattern to allow more methods
 
-* Ruby version
+steps to install:
+bundle install
+rake db:migrate
+rake db:seed
+set  smtp cred in development.rb
+update email of user model created
+rake SendNotifcation:DueDate
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
