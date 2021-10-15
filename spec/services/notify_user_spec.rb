@@ -3,10 +3,10 @@ RSpec.describe 'Notification:NotifyUser', type: :model do
 
   describe '#call' do
     include ActiveJob::TestHelper
-    let!(:user_1) { create(:user ,time_zone: Time.zone.name, send_due_date_reminder: true, due_date_reminder_time: Time.zone.now.strftime('%H:%M')) }
+    let!(:user_1) { create(:user ,time_zone: Time.zone.name, send_due_date_reminder: true, due_date_reminder_time: Time.zone.now.strftime('%H')) }
     let!(:ticket_1) { create(:ticket,  user: user_1) }
 
-    let!(:user_2) { create(:user , time_zone: Time.zone.name, send_due_date_reminder: true, due_date_reminder_interval: 1 , due_date_reminder_time: Time.zone.now.strftime('%H:%M')) }
+    let!(:user_2) { create(:user , time_zone: Time.zone.name, send_due_date_reminder: true, due_date_reminder_interval: 1 , due_date_reminder_time: Time.zone.now.strftime('%H')) }
     let!(:ticket_2) { create(:ticket,due_date: Date.tomorrow,  user: user_2) }
 
     before do
