@@ -5,7 +5,7 @@ module NotificationMethods
     end
 
     def call
-       EmailJob.perform_later(@user)
+      EmailJob.perform_later(@user)
     end
   end
 end
