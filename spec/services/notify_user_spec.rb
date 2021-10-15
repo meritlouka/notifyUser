@@ -19,7 +19,7 @@ RSpec.describe 'Notification:NotifyUser', type: :model do
     end
 
     it 'enque one emails' do
-      Notification::NotifyUser.new().call
+      Notification::NotifyUser.call
       expect(enqueued_jobs.size).to eq(2)
     end
 

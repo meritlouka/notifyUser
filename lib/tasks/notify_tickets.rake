@@ -1,5 +1,5 @@
 namespace :SendNotifcation do
   task DueDate: :environment do
-    Notification::NotifyUser.new().call
+    Notification::NotifyUser.call
   end
 end
