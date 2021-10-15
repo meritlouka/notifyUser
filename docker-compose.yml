@@ -7,3 +7,8 @@ services:
       - .:/myapp
     ports:
       - "3000:3000"
+  redis:
+    image: redis
+    container_name: redis
+    expose:
+      - 6379
